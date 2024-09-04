@@ -1,0 +1,29 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Invoice {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  invoice(id: Int!): Invoice!
+}
+
+type Mutation {
+  createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
+  updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
+  removeInvoice(id: Int!): Invoice!
+}
+
+input CreateInvoiceInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateInvoiceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
