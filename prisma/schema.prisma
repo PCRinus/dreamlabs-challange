@@ -14,5 +14,20 @@ datasource db {
 }
 
 model Invoice {
-  id Int @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
+  type        InvoiceType @default(INVOICE)
+  currency    Currency    @default(EUR)
+  amount      Float
+  dueDate     DateTime
+  description String?     @db.Text
+}
+
+enum InvoiceType {
+  INVOICE
+  STORNO
+}
+
+enum Currency {
+  EUR
+  RON
 }
