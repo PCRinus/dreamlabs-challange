@@ -3,7 +3,9 @@
 # ------------------------------------------------------
 
 type Invoice {
-  """Example field (placeholder)"""
+  """
+  Example field (placeholder)
+  """
   exampleField: Int!
 }
 
@@ -18,12 +20,16 @@ type Mutation {
 }
 
 input CreateInvoiceInput {
-  """Example field (placeholder)"""
+  """
+  Example field (placeholder)
+  """
   exampleField: Int!
 }
 
 input UpdateInvoiceInput {
-  """Example field (placeholder)"""
+  """
+  Example field (placeholder)
+  """
   exampleField: Int
   id: Int!
 }
