@@ -13,15 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Invoice {
-  id          Int         @id @default(autoincrement())
-  type        InvoiceType @default(INVOICE)
-  currency    Currency    @default(EUR)
-  amount      Float
-  dueDate     DateTime
-  description String?     @db.Text
-}
-
 enum InvoiceType {
   INVOICE
   STORNO
@@ -30,4 +21,29 @@ enum InvoiceType {
 enum Currency {
   EUR
   RON
+}
+
+model Project {
+  id       String    @id @default(uuid())
+  name     String
+  invoices Invoice[]
+}
+
+model Customer {
+  id       String    @id @default(uuid())
+  name     String
+  invoices Invoice[]
+}
+
+model Invoice {
+  id          Int         @id @default(autoincrement())
+  type        InvoiceType @default(INVOICE)
+  currency    Currency    @default(EUR)
+  amount      Float
+  dueDate     DateTime
+  description String?     @db.Text
+  Customer    Customer    @relation(fields: [customerId], references: [id])
+  customerId  String
+  Project     Project?    @relation(fields: [projectId], references: [id])
+  projectId   String?
 }
