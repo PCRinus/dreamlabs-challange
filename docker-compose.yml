@@ -1,6 +1,15 @@
-version: '3.8'
-
 services:
+  pgadmin:
+    container_name: dreamlabs-challange-pgadmin
+    image: dpage/pgadmin4:8.11
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - '5050:80'
+
   database:
     container_name: dreamlabs-challange-database
     image: postgres:latest
@@ -19,9 +28,12 @@ services:
       - '3333:3333'
     depends_on:
       - database
+      - pgadmin
     env_file:
       - .env
 
 volumes:
   postgres:
     name: dreamlabs-challange-database
+  pgadmin:
+    name: dreamlabs-challange-pgadmin
