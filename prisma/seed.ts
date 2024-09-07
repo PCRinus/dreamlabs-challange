@@ -23,8 +23,20 @@ const seed = async () => {
       name,
     };
   });
-  await prisma.customer.createMany({
-    data: customers,
+  const customerIds = (
+    await prisma.customer.createManyAndReturn({
+      data: customers,
+    })
+  ).map((customer) => customer.id);
+
+  await prisma.invoice.create({
+    data: {
+      amount: 1000,
+      currency: 'RON',
+      dueDate: new Date('2024-10-01'),
+      type: 'INVOICE',
+      customerId: customerIds[0],
+    },
   });
 };
 

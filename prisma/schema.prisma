@@ -42,8 +42,8 @@ model Invoice {
   amount      Float
   dueDate     DateTime
   description String?     @db.Text
-  Customer    Customer    @relation(fields: [customerId], references: [id])
-  customerId  String
+  Customer    Customer?    @relation(fields: [customerId], references: [id])
+  customerId  String?
   Project     Project?    @relation(fields: [projectId], references: [id])
   projectId   String?
 }
