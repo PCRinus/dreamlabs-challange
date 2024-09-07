@@ -48,4 +48,22 @@ export class InvoiceService {
       data: { isPaid: true },
     });
   }
+
+  async generateStornoInvoice(id: number): Promise<Invoice> {
+    const existingInvoice = await this.dbService.invoice.findUnique({
+      where: { id },
+    });
+
+    if (!existingInvoice) {
+      throw new Error('Invoice not found');
+    }
+
+    if (existingInvoice.type === 'STORNO') {
+      throw new Error('Invoice is already a storno invoice');
+    }
+
+    return await this.dbService.invoice.create({
+      data: { ...existingInvoice, type: 'STORNO' },
+    });
+  }
 }

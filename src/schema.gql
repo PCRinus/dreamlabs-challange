@@ -38,6 +38,7 @@ type Mutation {
   createInvoice(invoiceData: CreateInvoiceInput!): Invoice!
   updateInvoice(id: Int!, invoiceData: UpdateInvoiceInput!): Invoice!
   markInvoiceAsPaid(id: Int!): Invoice!
+  generateStornoInvoice(id: Int!): Invoice!
 }
 
 input CreateInvoiceInput {
