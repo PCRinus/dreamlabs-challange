@@ -14,4 +14,10 @@ export class CreateInvoiceInput {
 
   @Field(() => GraphQLISODateTime)
   dueDate: Date;
+
+  @Field(() => String)
+  description: string;
+
+  @Field(() => String)
+  customerId: string;
 }
