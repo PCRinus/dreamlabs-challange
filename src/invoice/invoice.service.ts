@@ -41,4 +41,11 @@ export class InvoiceService {
       data,
     });
   }
+
+  async markInvoiceAsPaid(id: number): Promise<Invoice> {
+    return await this.dbService.invoice.update({
+      where: { id },
+      data: { isPaid: true },
+    });
+  }
 }

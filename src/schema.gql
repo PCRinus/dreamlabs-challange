@@ -5,6 +5,7 @@
 type Invoice {
   id: Int!
   amount: Int!
+  isPaid: Boolean!
   currency: Currency!
   type: InvoiceType!
   dueDate: DateTime!
@@ -36,6 +37,7 @@ type Query {
 type Mutation {
   createInvoice(invoiceData: CreateInvoiceInput!): Invoice!
   updateInvoice(id: Int!, invoiceData: UpdateInvoiceInput!): Invoice!
+  markInvoiceAsPaid(id: Int!): Invoice!
 }
 
 input CreateInvoiceInput {

@@ -44,4 +44,9 @@ export class InvoiceResolver {
   ): Promise<Invoice> {
     return await this.invoiceService.updateInvoice(id, invoiceData);
   }
+
+  @Mutation(() => Invoice, { name: 'markInvoiceAsPaid' })
+  async markInvoiceAsPaid(@Args('id', { type: () => Int }) id: number): Promise<Invoice> {
+    return await this.invoiceService.markInvoiceAsPaid(id);
+  }
 }

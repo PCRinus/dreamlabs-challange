@@ -19,6 +19,9 @@ export class Invoice {
   @Field(() => Int)
   amount: number;
 
+  @Field(() => Boolean)
+  isPaid: boolean;
+
   @Field(() => Currency)
   currency: Currency;
 
