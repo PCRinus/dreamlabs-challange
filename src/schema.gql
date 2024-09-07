@@ -3,33 +3,32 @@
 # ------------------------------------------------------
 
 type Invoice {
-  """
-  Example field (placeholder)
-  """
-  exampleField: Int!
+  id: Int!
+  amount: Int!
+  currency: Currency!
+  type: InvoiceType!
+  dueDate: DateTime!
+  description: String
 }
+
+"""Currency of the invoice, either EUR or RON"""
+enum Currency {
+  EUR
+  RON
+}
+
+"""Type of the invoice, either INVOICE or STORNO"""
+enum InvoiceType {
+  INVOICE
+  STORNO
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Query {
-  invoice(id: Int!): Invoice!
-}
-
-type Mutation {
-  createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
-  updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
-  removeInvoice(id: Int!): Invoice!
-}
-
-input CreateInvoiceInput {
-  """
-  Example field (placeholder)
-  """
-  exampleField: Int!
-}
-
-input UpdateInvoiceInput {
-  """
-  Example field (placeholder)
-  """
-  exampleField: Int
-  id: Int!
+  selectInvoiceById(id: Int!): Invoice!
+  selectInvoices(currency: Currency!, invoiceType: InvoiceType!, customerId: String, projectId: String): [Invoice!]!
 }

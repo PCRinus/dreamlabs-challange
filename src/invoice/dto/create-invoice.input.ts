@@ -1,7 +1,17 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, GraphQLISODateTime } from '@nestjs/graphql';
+import { Currency, InvoiceType } from '@prisma/client';
 
 @InputType()
 export class CreateInvoiceInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field(() => Int)
+  amount: number;
+
+  @Field(() => Currency)
+  currency: Currency;
+
+  @Field(() => InvoiceType)
+  type: InvoiceType;
+
+  @Field(() => GraphQLISODateTime)
+  dueDate: Date;
 }
