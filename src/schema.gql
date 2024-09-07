@@ -32,3 +32,26 @@ type Query {
   selectInvoiceById(id: Int!): Invoice!
   selectInvoices(currency: Currency!, invoiceType: InvoiceType!, customerId: String, projectId: String): [Invoice!]!
 }
+
+type Mutation {
+  createInvoice(invoiceData: CreateInvoiceInput!): Invoice!
+  updateInvoice(id: Int!, invoiceData: UpdateInvoiceInput!): Invoice!
+}
+
+input CreateInvoiceInput {
+  amount: Int!
+  currency: Currency!
+  type: InvoiceType!
+  dueDate: DateTime!
+  description: String!
+  customerId: String!
+}
+
+input UpdateInvoiceInput {
+  amount: Int
+  currency: Currency
+  type: InvoiceType
+  dueDate: DateTime
+  description: String
+  customerId: String
+}

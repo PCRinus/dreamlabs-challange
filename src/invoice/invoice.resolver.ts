@@ -1,7 +1,9 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
 import { InvoiceService, SelectionFilters } from './invoice.service';
 import { Invoice } from './entities/invoice.entity';
 import { Currency, InvoiceType } from '@prisma/client';
+import { CreateInvoiceInput } from './dto/create-invoice.input';
+import { UpdateInvoiceInput } from './dto/update-invoice.input';
 
 @Resolver(() => Invoice)
 export class InvoiceResolver {
@@ -26,5 +28,20 @@ export class InvoiceResolver {
       projectId,
     };
     return await this.invoiceService.selectInvoices(selectionFilters);
+  }
+
+  @Mutation(() => Invoice, { name: 'createInvoice' })
+  async createInvoice(
+    @Args('invoiceData', { type: () => CreateInvoiceInput }) invoiceData: CreateInvoiceInput,
+  ): Promise<Invoice> {
+    return await this.invoiceService.createInvoice(invoiceData);
+  }
+
+  @Mutation(() => Invoice, { name: 'updateInvoice' })
+  async updateInvoice(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('invoiceData', { type: () => UpdateInvoiceInput }) invoiceData: UpdateInvoiceInput,
+  ): Promise<Invoice> {
+    return await this.invoiceService.updateInvoice(id, invoiceData);
   }
 }
