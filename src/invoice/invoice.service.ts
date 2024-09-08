@@ -52,6 +52,16 @@ export class InvoiceService {
   async generateStornoInvoice(id: number): Promise<Invoice> {
     const existingInvoice = await this.dbService.invoice.findUnique({
       where: { id },
+      select: {
+        amount: true,
+        currency: true,
+        customerId: true,
+        description: true,
+        dueDate: true,
+        isPaid: true,
+        projectId: true,
+        type: true,
+      },
     });
 
     if (!existingInvoice) {

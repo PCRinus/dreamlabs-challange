@@ -48,7 +48,7 @@ input CreateInvoiceInput {
   currency: Currency!
   type: InvoiceType!
   dueDate: DateTime!
-  description: String!
+  description: String
   customerId: String!
 }
 

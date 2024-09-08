@@ -15,7 +15,7 @@ export class CreateInvoiceInput {
   @Field(() => GraphQLISODateTime)
   dueDate: Date;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   description: string;
 
   @Field(() => String)
