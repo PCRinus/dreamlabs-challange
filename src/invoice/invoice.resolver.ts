@@ -11,15 +11,21 @@ export class InvoiceResolver {
 
   @Query(() => Invoice, { name: 'selectInvoiceById' })
   async selectInvoiceById(@Args('id', { type: () => Int }) id: number): Promise<Invoice> {
-    return await this.invoiceService.selectInvoiceById(id);
+    const invoice = await this.invoiceService.selectInvoiceById(id);
+
+    if (!invoice) {
+      throw new Error(`Invoice not found: ${id}`);
+    }
+
+    return invoice;
   }
 
   @Query(() => [Invoice], { name: 'selectInvoices' })
   async selectInvoices(
     @Args('currency', { type: () => Currency }) currency: Currency,
     @Args('invoiceType', { type: () => InvoiceType }) invoiceType: InvoiceType,
-    @Args('customerId', { type: () => String, nullable: true }) customerId?: string,
-    @Args('projectId', { type: () => String, nullable: true }) projectId?: string,
+    @Args('customerId', { type: () => String, nullable: true }) customerId: string | null,
+    @Args('projectId', { type: () => String, nullable: true }) projectId: string | null,
   ): Promise<Invoice[]> {
     const selectionFilters: SelectionFilters = {
       currency,
@@ -51,7 +57,7 @@ export class InvoiceResolver {
   }
 
   @Mutation(() => Invoice, { name: 'generateStornoInvoice' })
-  async generateStornoInvoice(@Args('id', { type: () => Int }) id: number): Promise<Invoice> {
+  async generateStornoInvoice(@Args('id', { type: () => Int }) id: number) {
     return await this.invoiceService.generateStornoInvoice(id);
   }
 }

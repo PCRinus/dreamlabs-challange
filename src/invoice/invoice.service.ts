@@ -10,7 +10,7 @@ export type SelectionFilters = Pick<Invoice, 'type' | 'currency' | 'customerId' 
 export class InvoiceService {
   constructor(private readonly dbService: DbService) {}
 
-  async selectInvoiceById(id: number): Promise<Invoice> {
+  async selectInvoiceById(id: number): Promise<Invoice | null> {
     return await this.dbService.invoice.findUnique({
       where: { id },
     });

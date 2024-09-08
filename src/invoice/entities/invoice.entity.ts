@@ -16,21 +16,27 @@ export class Invoice {
   @Field(() => Int)
   id: number;
 
+  @Field(() => InvoiceType)
+  type: InvoiceType;
+
+  @Field(() => Currency)
+  currency: Currency;
+
   @Field(() => Int)
   amount: number;
 
   @Field(() => Boolean)
   isPaid: boolean;
 
-  @Field(() => Currency)
-  currency: Currency;
-
-  @Field(() => InvoiceType)
-  type: InvoiceType;
-
   @Field(() => GraphQLISODateTime)
   dueDate: Date;
 
   @Field(() => String, { nullable: true })
-  description: string;
+  description: string | null;
+
+  @Field(() => String, { nullable: true })
+  customerId: string | null;
+
+  @Field(() => String, { nullable: true })
+  projectId: string | null;
 }

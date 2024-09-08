@@ -4,24 +4,26 @@
 
 type Invoice {
   id: Int!
+  type: InvoiceType!
+  currency: Currency!
   amount: Int!
   isPaid: Boolean!
-  currency: Currency!
-  type: InvoiceType!
   dueDate: DateTime!
   description: String
-}
-
-"""Currency of the invoice, either EUR or RON"""
-enum Currency {
-  EUR
-  RON
+  customerId: String
+  projectId: String
 }
 
 """Type of the invoice, either INVOICE or STORNO"""
 enum InvoiceType {
   INVOICE
   STORNO
+}
+
+"""Currency of the invoice, either EUR or RON"""
+enum Currency {
+  EUR
+  RON
 }
 
 """
