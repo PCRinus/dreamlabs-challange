@@ -7,3 +7,4 @@ node_modules
 dist
 .eslintrc.js
 README.md
+./prisma/ERD.svg
