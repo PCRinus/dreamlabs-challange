@@ -1,4 +1,17 @@
 services:
+  backend:
+    container_name: dreamlabs-challange-backend
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+      - pgadmin
+    env_file:
+      - .env
+
   pgadmin:
     container_name: dreamlabs-challange-pgadmin
     image: dpage/pgadmin4:8.11
@@ -20,17 +33,6 @@ services:
       - '5432:5432'
     volumes:
       - postgres:/var/lib/postgresql/data
-
-  backend:
-    container_name: dreamlabs-challange-backend
-    build: .
-    ports:
-      - '3333:3333'
-    depends_on:
-      - database
-      - pgadmin
-    env_file:
-      - .env
 
 volumes:
   postgres:
