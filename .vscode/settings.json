@@ -2,5 +2,6 @@
   "cSpell.words": [
     "datasources",
     "STORNO"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
