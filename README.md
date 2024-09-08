@@ -43,6 +43,10 @@ The only exception to this are when you
 
 In these cases, you will need to rebuild the docker containers by running `docker-compose up -dV --build`.
 
+The data from the app can be viewed using the Prisma Studio, by running `pnpm prisma:studio`. The Prisma Studio will be available at `http://localhost:5555`.
+
+The alternative is to use the built in pgAdmin client, available at `http://localhost:5050`. The default credentials can be set in the `.env` file.
+
 ## DB structure
 
 The database is a PostgreSQL database. The database is created with the following structure: ![DB ERD](./prisma/ERD.svg)
@@ -58,3 +62,4 @@ To run the tests, you can run `pnpm test`. This will run the unit tests for the 
 - E2E tests could be added to test the API endpoints, using [testcontainers](https://node.testcontainers.org/modules/postgresql/) for example
 - We could have used the [CQRS module](https://docs.nestjs.com/recipes/cqrs) to split our `invoice` resolver into commands and queries, but it seemed overkill for this exercise
 - Caching could have been an option to improve the performance of the application. We could have used a [Redis](https://docs.nestjs.com/recipes/caching) container, that would be used to set and retrieve the invoices from the cache, using a sensible TTL
+- The Docker images could be optimized, by either using smaller base images or by being more careful with what we include/copy in the image

@@ -25,7 +25,7 @@ services:
 
   database:
     container_name: dreamlabs-challange-database
-    image: postgres:latest
+    image: postgres:15
     restart: always
     env_file:
       - .env
